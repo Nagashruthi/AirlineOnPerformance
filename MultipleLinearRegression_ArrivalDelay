@@ -1,0 +1,13 @@
+#Regression model to predict arrival delay
+#We are considering the variables which are highly correlated
+inp<-read.csv("C:/Users/SCS_USER/Desktop/combined.csv")
+cor.test(inp$DepTime,inp$DepDelay,data=inp)
+cor.test(inp$ArrDelay,inp$DepDelay,data=inp)
+cor.test(inp$ArrDelay,inp$WeatherDelay,data=inp)
+cor.test(inp$ArrDelay,inp$SecurityDelay,data=inp)
+cor.test(inp$ArrDelay,inp$LateAircraftDelay,data=inp)
+#After running these commands, we found out that arrival delay is highly correlated with departure delay and late aircraft delay
+#We built a multiple linear regression model to predict how much would be the arriaval delay, given the depature delay and the late aircraft delay
+lmmodel<-lm(inp$ArrDelay~inp$DepDelay+inp$LateAircraftDelay,data=inp)
+summary(lmmodel)
+#Observing the co-efficients of the summary of lmmodel, we get a linear equation which calculates the arrival delay
