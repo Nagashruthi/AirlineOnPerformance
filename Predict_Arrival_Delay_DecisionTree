@@ -1,0 +1,20 @@
+# Decision tree to predict if there would be any arrival delay
+inp<-read.csv("C:/Users/SCS_USER/Desktop/combined.csv")
+inp=inp[,-11]
+names(inp)
+inp=inp[,-16]
+inp=inp[,-16]
+diff_arrTime=ifelse((inp$ArrTime-inp$CRSArrTime)>0,"Yes","No")
+inp=data.frame(inp,diff_arrTime)
+set.seed(2)
+train=sample(1:nrow(inp),nrow(inp)/2)
+test=-train
+training_data=inp[train,]
+test_data=inp[test,]
+testing_arrTime=diff_arrTime[test]
+tree_model=tree(diff_arrTime~.,training_data)
+tree_model=tree(diff_arrTime~.,training_data)
+plot(tree_model)
+text(tree_model,pretty=0)
+tree_pred = predict(tree_model, test_data, type = "class")
+mean(tree_pred != testing_arrTime, na.rm = TRUE)
