@@ -1,0 +1,40 @@
+ #Read input file
+ input <- read.csv("F:/SJSU SE/CMPE 239/Project/239/Data/2008.csv")
+ head(input)
+
+ names(input)
+ 
+ input = input[,-11]
+ names(input)
+
+ input = input[,-15]
+ input = input[,-15]
+ names(input)
+
+ input = input[,-15]
+ remove(diff_depTime)
+
+ names(input)
+
+#Calculate the departure delay ie. if actual departure and scheduled departure is greater than 15 minutes
+ diff_depTime = ifelse((input$DepTime - input$CRSDepTime) > 15, "Yes", "No")
+ input = data.frame(input,diff_depTime)
+ names(input)
+    
+ set.seed(3)
+
+ # make training and test datasets
+ train = sample(1:nrow(input), nrow(input)/3)
+ test = -train
+ training_data = input[train,]
+ test_data = input[test,]
+ testing_diffTime = diff_depTime[test]
+ tree_model = tree(diff_depTime~., training_data)
+ plot(tree_model)
+ text(tree_model,pretty = 0)
+ remove(tree_pred)
+
+
+ tree_pred = predict(tree_model, test_data, type = "class")
+ mean(tree_pred != testing_diffTime, na.rm = TRUE)
+
