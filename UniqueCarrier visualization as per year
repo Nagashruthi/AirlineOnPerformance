@@ -1,0 +1,20 @@
+inp <- read.csv("F:/SJSU SE/CMPE 239/Project/239/Data/2008.csv")
+ inp = subset(inp,Month == "12")
+ inp = na.omit(inp)
+ inp = inp[,-20:-29]
+ inp = inp[,-1]
+ inp = inp[,-1]
+ str(inp)
+ summary(inp$DayofMonth)
+ summary(inp$DayOfWeek)
+ summary(inp$DepTime)
+ summary(inp$ArrTime)
+ summary(inp$CArrTime)
+ summary(inp$CRSArrTime)
+ summary(inp$CRSDepTime)
+ carrier = data.frame(inp$UniqueCarrier)
+
+
+ install.packages("ggplot2")
+ library(ggplot2)
+ qplot(x=inp$UniqueCarrier,data=carrier, fill=inp$UniqueCarrier)
