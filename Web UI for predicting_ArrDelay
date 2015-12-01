@@ -1,0 +1,45 @@
+<html>
+<head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  
+</head>
+<body>
+	<script type="text/javascript">
+  function findval()
+  {
+  	var v1=document.getElementById('i1');
+  	var v2=document.getElementById('i2');
+  	var v3=v1.value*1.2;
+  	document.getElementById('i3').innerHTML=Math.floor(v3);	
+  }
+  </script>
+	<div class="fluid-container">
+		<h2> <i>Welcome to Web Miner's Data Mining</i></h2> </br>
+		<h4> Here is the demonstration of multiple linear regression model, which predicts the </br>
+			arrival delay of the given flight, given its departure delay and late aircraft delay</h4> </br>
+		<div class="row">
+			<div class="col-sm-4">
+				<h4>DepDelay:</h4><input id="i1" type="text" placeholder="DepDelay(min)" name="DepDelay">
+			</div>
+			<div class="col-sm-4">
+				<h4>LateAirCraftDelay:</h4><input id="i2" type="text" placeholder="LateAirCraftDelay(min)" name="LateAirCraftDelay">
+			</div> 
+		</div>
+	</br></br>
+		<div class="row">
+			<div class="col-sm-4">
+				<button type="button" onclick="findval()">Predict Arrival Delay</button>
+			</div>
+		</div>
+	</br></br>
+		<div class="row">
+			<div class="col-sm-4">
+			<h3> Here is the predicted arrival delay(min): </h3></br><div id="i3" name="arrdelay"></div>
+		</div>
+		</div>
+
+	</div>
+</body>
+</html>
